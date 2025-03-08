@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Air Pollution Index</title>
+    <style>
+        body {
+            background-color: black;
+            color: cyan;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h2 {
+            font-size: 36px;
+            color: lime;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 20px;
+            color: magenta;
+            max-width: 800px;
+            margin: 10px auto;
+            line-height: 1.5;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        table {
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 2px solid lime;
+            padding: 10px;
+            font-size: 20px;
+            text-align: left;
+        }
+        th {
+            color: lime;
+        }
+        td {
+            color: cyan;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        input {
+            background-color: black;
+            color: cyan;
+            border: 2px solid lime;
+            font-size: 20px;
+            padding: 10px;
+            margin: 10px;
+            width: 320px;
+            text-align: center;
+            display: block;
+        }
+        button {
+            background-color: lime;
+            color: black;
+            font-size: 22px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: cyan;
+            color: black;
+        }
+        h3 {
+            font-size: 28px;
+            color: magenta;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Enter 8 Values</h2>
+    <p>Provide the following values to predict the Air Pollution Index:</p>
+    
+    <div class="container">
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Parameter</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Temperature (°C)</td>
+                <td>Current air temperature</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Humidity (%)</td>
+                <td>Moisture content in the air</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>PM2.5 (µg/m³)</td>
+                <td>Fine particulate matter</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>PM10 (µg/m³)</td>
+                <td>Coarse particulate matter</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>NO₂ (µg/m³)</td>
+                <td>Nitrogen Dioxide level</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>SO₂ (µg/m³)</td>
+                <td>Sulfur Dioxide level</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Proximity to Industrial Areas (km)</td>
+                <td>Distance from pollution sources</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Population Density (people/km²)</td>
+                <td>Density of people in the area</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="form-container">
+        <form action="/predict" method="post">
+            {% for i in range(8) %}
+                <input type="text" name="values" placeholder="Enter Value {{ i+1 }}" required>
+            {% endfor %}
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+    
+    <h3>Prediction: {{ prediction }}</h3>
+</body>
+</html>
